@@ -16,6 +16,7 @@ export default class BoatsNearMe extends LightningElement {
     @wire(getBoatsByLocation, { latitude: '$latitude', longitude: '$longitude', boatTypeId: '$boatTypeId' })
     wiredBoatsJSON({ error, data }) {
         if (data) {
+            console.log("Inside getBoatsByLocation data section.")
             this.createMapMarkers(data);
         } else if (error) {
             this.dispatchEvent(
@@ -29,18 +30,21 @@ export default class BoatsNearMe extends LightningElement {
         }
     }
     renderedCallback() {
+        //console.log("Inside renderedCallback");
         if (this.isRendered == false) {
             this.getLocationFromBrowser();
         }
         this.isRendered = true;
     }
     getLocationFromBrowser() {
+        //console.log("Inside getLocationFromBrowser");
         navigator.geolocation.getCurrentPosition(
             position => {
                 this.latitude = position.coords.latitude;
                 this.longitude = position.coords.longitude;
+                //console.log("Inside getCurrentPosition" + "Latitude :" + this.latitude + "Longitude :" + this.longitude);
             },
-            (e) => {
+            (error) => {
 
             }, {
             enableHighAccuracy: true

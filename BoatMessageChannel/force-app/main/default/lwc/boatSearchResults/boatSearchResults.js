@@ -6,6 +6,12 @@ import { refreshApex } from '@salesforce/apex';
 import { publish, MessageContext } from 'lightning/messageService';
 import BoatMC from '@salesforce/messageChannel/BoatMessageChannel__c';
 
+const SUCCESS_TITLE = 'Success';
+const MESSAGE_SHIP_IT = 'Ship it!';
+const SUCCESS_VARIANT = 'success';
+const ERROR_TITLE = 'Error';
+const ERROR_VARIANT = 'error';
+
 export default class BoatSearchResults extends LightningElement {
     boatTypeId = '';
     @track boats;
@@ -53,7 +59,7 @@ export default class BoatSearchResults extends LightningElement {
            const fields = Object.assign({}, draft);
            return {fields};
        });
-       console.log(recordInputs);
+       console.log("Record Inputs" + recordInputs);
        const promises = recordInputs.map(recordInput => updateRecord(recordInput));
        Promise.all(promises).then(res => {
            this.dispatchEvent(
