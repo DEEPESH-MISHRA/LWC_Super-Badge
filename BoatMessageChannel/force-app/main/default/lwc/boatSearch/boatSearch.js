@@ -4,7 +4,7 @@ import { NavigationMixin } from 'lightning/navigation';
 export default class BoatSearch extends  NavigationMixin(LightningElement) {
     isLoading = false;
 
-    @track isLoading = true;
+    //@track isLoading = true;
     
     handleLoading()
     {

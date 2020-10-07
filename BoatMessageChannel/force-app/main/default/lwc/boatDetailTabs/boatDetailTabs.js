@@ -34,6 +34,7 @@ export default class BoatDetailTabs extends NavigationMixin(LightningElement){
     // Utilize getFieldValue to extract the boat name from the record wire
     @wire(getRecord, { recordId: '$boatId', fields: BOAT_FIELDS })
     wiredRecord;
+
     get boatName() {
         return getFieldValue(this.wiredRecord.data, BOAT_NAME_FIELD);
     }
@@ -59,6 +60,7 @@ export default class BoatDetailTabs extends NavigationMixin(LightningElement){
     connectedCallback() {
         this.subscribeMC();
     }
+    
     // Navigates to record page
     navigateToRecordViewPage() {
         this[NavigationMixin.Navigate]({

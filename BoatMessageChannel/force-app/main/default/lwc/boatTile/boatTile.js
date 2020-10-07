@@ -13,7 +13,7 @@ export default class BoatTile extends LightningElement {
     //return "background-image:url(${this.boat.Picture__c})";  
   }
   get tileClass() {
-    return this.selectedBoatId
+    return(this.boat.Id == this.selectedBoatId)
       ? TILE_WRAPPER_SELECTED_CLASS
       : TILE_WRAPPER_UNSELECTED_CLASS;
   }
